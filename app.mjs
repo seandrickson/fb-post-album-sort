@@ -1,21 +1,14 @@
 import {
   copyFile,
-  mkdir,
-  readFile
+  mkdir
 } from 'node:fs/promises';
 import {
   parse,
   resolve
 } from 'node:path';
-
+import fb_posts from "./fb-export/posts/profile_posts_1.json" assert { type: "json" };
 const SRC_FOLDER = './fb-export';
 const DIST_FOLDER = './dist';
-
-const fb_posts = JSON.parse(
-  await readFile(
-    new URL(`${SRC_FOLDER}/posts/posts_1.json`, import.meta.url)
-  )
-);
 
 const create_dir = async (post) => {
   const title = post.replace(/\n/g, ' | ')
